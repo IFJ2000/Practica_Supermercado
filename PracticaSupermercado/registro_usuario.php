@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <?php require "../Funciones/util.php" ?>
-    <?php require "../Práctica Supermercado/Conexion_BBDD.php" ?>
+    <?php require "../PracticaSupermercado/Conexion_BBDD.php" ?>
 
 </head>
 
@@ -70,11 +70,13 @@
                     $error_fechaNaci = "No puedes tener menos de 12 años";
                 } elseif ($mesActual == $mesNaci && $diaActual < $diaNaci) {
                     $error_fechaNaci = "No puedes tener menos de 12 años";
-                } else {
+                } 
 
-                    $fecha_naci = $temp_fechaNaci;
-                    echo "CUM";
-                }
+                   
+                
+            }else{
+                $fecha_naci = $temp_fechaNaci;
+                echo "CUM";
             }
         }
     }
@@ -103,9 +105,10 @@
     </form>
 
     <?php if (isset($usuario) && isset($contrasena) && isset($fecha_naci)) {
-        $sql = "INSERT INTO usuarios (usuario, contraseña, fechaNacimiento) VALUES('$usuario','$contrasena_cifrada','$fechaNaci')";
+        $sql = "INSERT INTO usuarios (usuario, contraseña, fechaNacimiento) VALUES('$usuario','$contrasena_cifrada','$fecha_naci')";
         $conexion->query($sql);
 
+        /* NOSE PORQUE PERO DUPLICA LOS REGISTROS */
         if ($conexion->query($sql) === TRUE) {
             echo "Datos insertados correctamente.";
         } else {

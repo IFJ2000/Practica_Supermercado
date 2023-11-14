@@ -6,20 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <?php require "../Funciones/util.php" ?>
-    <?php require "../Práctica Supermercado/BBDD_Supermercado.sql" ?>
+    <?php require "../PracticaSupermercado/Conexion_BBDD.php" ?>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
 </head>
 
 <body>
-
+<!-- ARREGLAR LA VALIDACION DEL USER -->
     <?php
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $usuario = depurar($POST["usuario"]);
-        $contrasena = depurar($POST["contrasena"]);
+        $usuario = depurar($_POST["usuario"]);
+        $contrasena = depurar($_POST["contrasena"]);
         $sql = "SELECT * FROM usuarios WHERE usuario = $usuario";
-        $resultado = $_conexion->query($sql);
+        $resultado = $conexion->query($sql);
         if ($resultado->num_rows == 0) {
             echo "El usuario introducido no existe";
-
         } else {
             while ($fila = $resultado->fetch_assoc()) {
                 $contrasena_cifrada = $fila["contrasena"];
@@ -31,18 +32,21 @@
                 //$_SESSION["loquesea"] = "loquesea";
                 /* AQUI CONTROLAREMOS SI EL USUARIO TIENE ROL DE ADMIN O NO*/
                 /* select rol FROM usuarios WHERE usuario = $usuario */
-                $_SESSION["rol"] = $rol;
-                if ($_SESSION["rol"] == "admin") {
+                //$_SESSION["rol"] = $rol;
+                /* if ($_SESSION["rol"] == "admin") {
                     header("Location: Insertar_product.php");
                 } else {
                     header("Location: principal.php");
-
                 }
+            } else {
+                echo "CONTRASEÑA MAL";
+            }*/
+
+                header("location: principal.php");
             } else {
                 echo "CONTRASEÑA MAL";
             }
         }
-
     }
     ?>
 
@@ -68,5 +72,6 @@
 
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </html>

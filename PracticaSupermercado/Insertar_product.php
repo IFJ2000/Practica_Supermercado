@@ -19,11 +19,78 @@
         $temp_descripcion = depurar($_POST["descripcion"]);
 
         $temp_cantidad = depurar($_POST["cantidad"]);
+
+
+        /* ------------------------------------------------------------------------------------ */
+
+        if (strlen($temp_nombre) == 0) {
+
+            $error_nombre = "El campo nombre es obligatorio";
+        } else {
+
+            if (strlen($temp_nombre) > 40) {
+                $error_nombre = "El nombre debe de tener menos de 40 caracteres";
+            } else if (!preg_match("/^[a-zA-Z 0-9]+$/", $temp_nombre)) {
+
+                $error_nombre = "El nombre solo acepta caracteres, numeros  y espacios en blanco ";
+            } else {
+
+                $nombre = $temp_nombre;
+                echo "soy la imagen correcta";
+            }
+        }
+
+        if (strlen($temp_precio) == 0) {
+            $error_precio = "El campo precio es un campo obligatorio";
+            echo "1";
+        } else {
+            $temp_precio = (float) $temp_precio;
+            if ($temp_precio > 99999.99 || $temp_precio < 0) {
+                $error_precio = "El precio debe ser menor de 99999,99 y mayor que 0";
+                echo "2";
+            } else if (filter_var($temp_precio, FILTER_VALIDATE_FLOAT) == false) {
+                $error_descripcion = "El precio debe de ser un numero";
+                echo "3";
+            } else {
+                $precio = $temp_precio;
+                echo "soy el precio correcto";
+            }
+        }
+
+        if (strlen($temp_descripcion) == 0) {
+            $error_descripcion = "El campo descripción es obligatorio ";
+        } else {
+            if ($temp_descripcion > 255) {
+                $error_descripcion = "La descripcion debe tener menos de 255 caracteres ";
+            } else {
+
+                $descripcion = $temp_descripcion;
+                echo "soy la descripcion correcta!";
+            }
+        }
+
+        if (strlen($temp_cantidad) == 0) {
+            $error_cantidad = "El campo cantidad es un campo obligatorio";
+        } else {
+
+            if (filter_var($temp_cantidad, FILTER_VALIDATE_INT) == false) {
+                echo "holaaaa";
+                $error_cantidad = "La cantidad introducida no es un numero";
+            } else if ($temp_cantidad > 99999 || $temp_cantidad < 0) {
+
+                $error_cantidad = "La cantidad debe ser mayo a 0 y menor que 99999";
+            } else {
+
+                $cantidad = $temp_cantidad;
+                echo "soy la cantidad correcta!";
+            }
+        }
+
         /* Para mostar el nombre de  imagenes */
         $nombre_fichero = $_FILES["imagen"]["name"];
-        echo $nombre_fichero."\n" ;
-        $ruta_temporal = $_FILES["imagen"]["tmp_name"];
-        echo $ruta_temporal;
+        echo $nombre_fichero."aaaaaaaaaa";
+        $temp_imagen = $_FILES["imagen"]["tmp_name"];
+        echo $temp_imagen;
 
         if (strlen($nombre_fichero) == 0) {
             $error_imagen = "El campo imagen es obligatorio";
@@ -41,70 +108,9 @@
             } else if (!strpos($formato, "/jpg") && !strpos($formato, "/jpeg") && !strpos($formato, "png")) {
                 $error_imagen = "El formato de la imagen no es correcto: jpg/jpeg/png";
             } else {
-                $imagen = $temp_imagen;
-            }
-        }
-
-        /* ------------------------------------------------------------------------------------ */
-
-        if (strlen($temp_nombre) == 0) {
-
-            $error_nombre = "El campo nombre es obligatorio";
-        } else {
-
-            if (strlen($temp_nombre) > 40) {
-                $error_nombre = "El nombre debe de tener menos de 40 caracteres";
-            } else if (!preg_match("/^[a-zA-Z 0-9]+$/", $temp_nombre)) {
-
-                $error_nombre = "El nombre solo acepta caracteres, numeros  y espacios en blanco ";
-            } else {
-
-                $nombre = $temp_nombre;
-            }
-        }
-
-        if (strlen($temp_precio) == 0) {
-            $error_precio = "El campo precio es un campo obligatorio";
-            echo "1";
-        } else {
-            $temp_precio = (float) $temp_precio;
-            if ($temp_precio > 99999.99 || $temp_precio < 0) {
-                $error_precio = "El precio debe ser menor de 99999,99 y mayor que 0";
-                echo "2";
-            } else if (filter_var($temp_precio, FILTER_VALIDATE_FLOAT) == false) {
-                $error_descripcion = "El precio debe de ser un numero";
-                echo "3";
-            } else {
-                $precio = $temp_precio;
-                echo "4";
-            }
-        }
-
-        if (strlen($temp_descripcion) == 0) {
-            $error_descripcion = "El campo descripción es obligatorio ";
-        } else {
-            if ($temp_descripcion > 255) {
-                $error_descripcion = "La descripcion debe tener menos de 255 caracteres ";
-            } else {
-
-                $descripcion = $temp_descripcion;
-            }
-        }
-
-        if (strlen($temp_cantidad) == 0) {
-            $error_cantidad = "El campo cantidad es un campo obligatorio";
-        } else {
-
-            if (filter_var($temp_cantidad, FILTER_VALIDATE_INT) == false) {
-                echo "holaaaa";
-                $error_cantidad = "La cantidad introducida no es un numero";
-            } else if ($temp_cantidad > 99999 || $temp_cantidad < 0) {
-
-                $error_cantidad = "La cantidad debe ser mayo a 0 y menor que 99999";
-            } else {
-
-                $descripcion = $temp_descripcion;
-                echo "soy correcto!";
+                //$imagen = $temp_imagen;
+                $rutaFinal =  "/ImagenesProductos" . $nombre_fichero;
+                move_uploaded_file($temp_imagen, $ruta_Final);
             }
         }
     }
@@ -156,9 +162,10 @@
     </form>
     <!-- REVISAR INSERT DE DATOS PRODUCTOS EN CLASE -->
     <?php
-    if (isset($nombre) && isset($precio) && isset($descripcion) && isset($cantidad)) {
-        $sql = "INSERT INTO productos (nombre , precio , descripcion, cantidad, imagen) VALUES($nombre, $precio, $descripcion, $cantidad, $rutaFinal)";
+    if (isset($nombre) && isset($precio) && isset($descripcion) && isset($cantidad) /* && isset($imagen) */) {
+        $sql = "INSERT INTO productos (nombre , precio , descripcion, cantidad, imagen) VALUES($nombre, $precio, $descripcion, $cantidad/* , $imagen */)";
         $conexion->query($sql);
+        echo "coronamos!!!";
     }
     ?>
 
