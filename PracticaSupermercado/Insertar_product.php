@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <?php require "../Funciones/util.php" ?>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <?php require "../../Funciones/util.php" ?>
+    <?php require "../PracticaSupermercado/Conexion_BBDD.php" ?>
+
 </head>
 
 <body>
@@ -60,7 +63,7 @@
         if (strlen($temp_descripcion) == 0) {
             $error_descripcion = "El campo descripción es obligatorio ";
         } else {
-            if ($temp_descripcion > 255) {
+            if (strlen($temp_descripcion) > 255) {
                 $error_descripcion = "La descripcion debe tener menos de 255 caracteres ";
             } else {
 
@@ -88,7 +91,7 @@
 
         /* Para mostar el nombre de  imagenes */
         $nombre_fichero = $_FILES["imagen"]["name"];
-        echo $nombre_fichero."aaaaaaaaaa";
+        echo $nombre_fichero . "aaaaaaaaaa";
         $temp_imagen = $_FILES["imagen"]["tmp_name"];
         echo $temp_imagen;
 
@@ -109,8 +112,8 @@
                 $error_imagen = "El formato de la imagen no es correcto: jpg/jpeg/png";
             } else {
                 //$imagen = $temp_imagen;
-                $rutaFinal =  "/ImagenesProductos" . $nombre_fichero;
-                move_uploaded_file($temp_imagen, $ruta_Final);
+                $rutaFinal = "../PracticaSupermercado/ImagenesProductos". $nombre_fichero;
+                move_uploaded_file($temp_imagen, $rutaFinal);
             }
         }
     }
@@ -162,8 +165,8 @@
     </form>
     <!-- REVISAR INSERT DE DATOS PRODUCTOS EN CLASE -->
     <?php
-    if (isset($nombre) && isset($precio) && isset($descripcion) && isset($cantidad) /* && isset($imagen) */) {
-        $sql = "INSERT INTO productos (nombre , precio , descripcion, cantidad, imagen) VALUES($nombre, $precio, $descripcion, $cantidad/* , $imagen */)";
+    if (isset($nombre) && isset($precio) && isset($descripcion) && isset($cantidad) && isset($imagen)) {
+        $sql = "INSERT INTO productos (nombreProducto , precio , descripcion, cantidad, imagen) VALUES($nombre, $precio, $descripcion, $cantidad , $imagen)";
         $conexion->query($sql);
         echo "coronamos!!!";
     }
@@ -171,6 +174,8 @@
 
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
 
 </html>

@@ -7,7 +7,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-    <?php require "../Funciones/util.php" ?>
+    <?php require "../../Funciones/util.php" ?>
     <?php require "../PracticaSupermercado/Conexion_BBDD.php" ?>
 
 </head>
@@ -109,11 +109,11 @@
         $conexion->query($sql);
 
         /* NOSE PORQUE PERO DUPLICA LOS REGISTROS */
-        if ($conexion->query($sql) === TRUE) {
+        /*if ($conexion->query($sql) === TRUE) {
             echo "Datos insertados correctamente.";
         } else {
             echo "Error en la inserción: " . $conexion->error;
-        }
+        }*/
     } ?>
 
 </body>
