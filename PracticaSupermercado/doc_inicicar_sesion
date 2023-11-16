@@ -1,0 +1,15 @@
+En un escenario típico de una aplicación web, la variable $_SESSION['usuario'] se establece y se crea durante la ejecución del código en el servidor en el momento en que se inicia la sesión del usuario.
+
+En el flujo habitual:
+
+El usuario ingresa su nombre de usuario y contraseña en un formulario de inicio de sesión.
+Los datos del formulario se envían al servidor.
+El servidor procesa estos datos, verifica las credenciales y, si son válidas, crea una sesión para el usuario.
+Durante la creación o reanudación de la sesión (generalmente con session_start()),
+ se pueden establecer variables de sesión, como $_SESSION['usuario'], 
+ para almacenar información específica sobre el usuario.
+
+ 
+Por lo tanto, $_SESSION['usuario'] se crea y se establece en el servidor en el momento en que se inicia la sesión del usuario después de una autenticación exitosa. Este valor de sesión se mantiene y está disponible para su uso en todas las páginas subsiguientes mientras la sesión del usuario esté activa.
+
+Es importante destacar que $_SESSION['usuario'] no se envía ni se define directamente desde un formulario HTML; su creación y establecimiento ocurren en el lado del servidor después de que se haya verificado y se haya autenticado al usuario.

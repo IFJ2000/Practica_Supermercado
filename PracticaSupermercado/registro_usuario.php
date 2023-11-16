@@ -76,7 +76,7 @@
                 
             }else{
                 $fecha_naci = $temp_fechaNaci;
-                echo "CUM";
+                echo "DUM";
             }
         }
     }

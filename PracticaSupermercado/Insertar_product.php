@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <?php require "../../Funciones/util.php" ?>
     <?php require "../PracticaSupermercado/Conexion_BBDD.php" ?>
 
@@ -52,7 +51,7 @@
                 $error_precio = "El precio debe ser menor de 99999,99 y mayor que 0";
                 echo "2";
             } else if (filter_var($temp_precio, FILTER_VALIDATE_FLOAT) == false) {
-                $error_descripcion = "El precio debe de ser un numero";
+                $error_precio = "El precio debe de ser un numero";
                 echo "3";
             } else {
                 $precio = $temp_precio;
@@ -112,7 +111,7 @@
                 $error_imagen = "El formato de la imagen no es correcto: jpg/jpeg/png";
             } else {
                 //$imagen = $temp_imagen;
-                $rutaFinal = "../PracticaSupermercado/ImagenesProductos". $nombre_fichero;
+                $rutaFinal = "./ImagenesProductos" . $nombre_fichero;
                 move_uploaded_file($temp_imagen, $rutaFinal);
             }
         }
@@ -165,17 +164,17 @@
     </form>
     <!-- REVISAR INSERT DE DATOS PRODUCTOS EN CLASE -->
     <?php
-    if (isset($nombre) && isset($precio) && isset($descripcion) && isset($cantidad) && isset($imagen)) {
-        $sql = "INSERT INTO productos (nombreProducto , precio , descripcion, cantidad, imagen) VALUES($nombre, $precio, $descripcion, $cantidad , $imagen)";
+    if (isset($nombre) && isset($precio) && isset($descripcion) && isset($cantidad) && isset($rutaFinal)) {
+        $sql = "INSERT INTO productos (nombreProducto , precio , descripcion, cantidad, imagen) VALUES('$nombre', $precio, '$descripcion', $cantidad , '$rutaFinal')";
         $conexion->query($sql);
-        echo "coronamos!!!";
+        echo $sql;
     }
     ?>
 
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
 </html>

@@ -7,11 +7,22 @@
     <title>Document</title>
     <?php require "../PracticaSupermercado/Objeto_producto.php" ?>
     <?php require "../PracticaSupermercado/Conexion_BBDD.php" ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
+<style>
 
+    img{
+        height: 200px;
+        
+    }
+
+    #cerrarSesion{
+        text-decoration: none;
+        color: white;
+    }
+   
+    
+</style>
 <body>
     <?php
 
@@ -21,7 +32,6 @@
     } else {
         $_SESSION["usuario"] = "invitado";
         $usuario = $_SESSION["usuario"];
-
     }
 
     ?>
@@ -47,7 +57,7 @@
         <?php echo "<h1>" . $usuario . "</h1>" ?>
     </h1>
 
-    <table>
+    <table class="table table-striped-columns">
         <caption>TABLA DE PRODUCTOS</caption>
         <thead>
             <tr>
@@ -56,6 +66,7 @@
                 <th>PRECIO</th>
                 <th>DESCRIPCIÓN</th>
                 <th>CANTIDAD</th>
+                <th>IMAGEN</th>
 
             </tr>
         </thead>
@@ -63,28 +74,33 @@
             <?php foreach ($productos as $producto) { ?>
                 <tr>
                     <td>
-                        <?php $producto->$idProducto ?>
+                        <?php echo $producto->id; ?>
                     </td>
 
                     <td>
-                        <?php $producto->$nombreProducto ?>
+                        <?php echo $producto->nombre; ?>
                     </td>
 
                     <td>
-                        <?php $producto->$precio ?>
+                        <?php echo $producto->precio; ?>
                     </td>
                     <td>
-                        <?php $producto->$descripcion ?>
+                        <?php echo $producto->descripcion; ?>
                     </td>
 
                     <td>
-                        <?php $producto->$imagen ?>
+                        <?php echo $producto->cantidad; ?>
+                    </td>
+
+                    <td>
+                        <img src=" <?php echo $producto->imagen; ?>">
+                    
                     </td>
 
                     <td>
                         <form action="" method="post">
                             <input type="hidden" name="id_producto" value="<?php echo $producto->$idProducto ?>">
-                            <input class="btn btn-dander" type="submit" value="Añadir a cesta">
+                            <input class="btn btn-success" type="submit" value="Añadir a cesta">
                         </form>
                     </td>
 
@@ -92,17 +108,15 @@
 
                 <?php } ?>
 
-            </tr>
+                </tr>
         </tbody>
 
     </table>
 
 
-    <button> <a href="cerrar_sesion.php">Cerrar sesión</a></button>
+    <button  class = "btn btn-danger"> <a id="cerrarSesion" href="cerrar_sesion.php">Cerrar sesión</a></button>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </html>
