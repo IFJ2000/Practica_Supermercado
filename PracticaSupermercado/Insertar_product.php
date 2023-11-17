@@ -162,7 +162,7 @@
         <input type="submit" class="btn btn-primary" value="Enviar Producto">
 
     </form>
-    <!-- REVISAR INSERT DE DATOS PRODUCTOS EN CLASE -->
+    
     <?php
     if (isset($nombre) && isset($precio) && isset($descripcion) && isset($cantidad) && isset($rutaFinal)) {
         $sql = "INSERT INTO productos (nombreProducto , precio , descripcion, cantidad, imagen) VALUES('$nombre', $precio, '$descripcion', $cantidad , '$rutaFinal')";
