@@ -111,7 +111,7 @@
                 $error_imagen = "El formato de la imagen no es correcto: jpg/jpeg/png";
             } else {
                 //$imagen = $temp_imagen;
-                $rutaFinal = "./ImagenesProductos" . $nombre_fichero;
+                $rutaFinal = "./ImagenesProductos/" . $nombre_fichero;
                 move_uploaded_file($temp_imagen, $rutaFinal);
             }
         }
