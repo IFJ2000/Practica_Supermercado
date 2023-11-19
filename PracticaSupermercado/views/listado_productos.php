@@ -10,10 +10,10 @@
 <body>
     <?php
     $sql = "SELECT * FROM productos";
-    $resultado = $conexion->query($sql);
+    $usuario = $conexion->query($sql);
     $productos = [];
 
-    while ($fila = $resultado->fetch_assoc()) { /* Aqui fila es un array */
+    while ($fila = $usuario->fetch_assoc()) { /* Aqui fila es un array */
         $nombre = $fila["nombreProducto"];
         $precio = $fila["precio"];
         $descripcion = $fila["descripcion"];

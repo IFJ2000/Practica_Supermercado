@@ -16,12 +16,12 @@
         $usuario = $_POST["usuario"];
         $contrasena = $_POST["contrasena"];
         $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario'";
-        $resultado = $_conexion->query($sql);
+        $usuario = $_conexion->query($sql);
 
-        if ($resultado->num_rows === 0) {
+        if ($usuario->num_rows === 0) {
             echo "El usuario no existe";
         } else {
-            while ($fila = $resultado->fetch_assoc()) { /* Coge la info d euna tabla de manera asociativa y cada fila la transforma en un array, en cada iteracion alamacena en la variable $fila una fila de la tabla */
+            while ($fila = $usuario->fetch_assoc()) { /* Coge la info d euna tabla de manera asociativa y cada fila la transforma en un array, en cada iteracion alamacena en la variable $fila una fila de la tabla */
                 $contrasena_cifrada = $fila["contrasena"];
             }
 

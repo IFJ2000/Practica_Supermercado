@@ -16,13 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contrasena = $_POST["contrasena"];
     $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario'";
     /* Almacenamos en resultado la tabla gracias a la sentencia sql que nos la muestra */
-    $resultado = $_conexion->query($sql);
+    $usuario = $_conexion->query($sql);
     /* Si en la tabla no hay ninguna fila */
-    if ($resultado->num_rows == 0) {
+    if ($usuario->num_rows == 0) {
         echo " El usuario introducido no existe";
     } else {
         /* Coge la info d euna tabla de manera asociativa y cada fila la transforma en un array, en cada iteracion alamacena en la variable $fila una fila de la tabla */
-        while ($fila = $resultado->fetch_assoc()) {
+        while ($fila = $usuario->fetch_assoc()) {
             $contrasena_cifrada = $fila["contrasena"]; /* En contraseña_cifrada metemos las contraseñas de cada fila de la tabla. Al poner [contrasena], nos referimos a la columna de la tabla */
         }
         
