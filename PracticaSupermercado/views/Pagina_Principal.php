@@ -8,7 +8,8 @@
     <?php require "../model/Objeto_producto.php" ?>
     <?php require "../util/constantes_sesion.php" ?>
     <?php require "../util/Conexion_BBDD.php" ?>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <style>
     img {
@@ -107,7 +108,7 @@
 
                 <?php } ?>
 
-                </tr>
+            </tr>
         </tbody>
 
     </table>
@@ -155,21 +156,11 @@
     ?>
 
 
-
-    <!-- ESTE TROZO ME SIRVE PARA EL APARTADOP 8 -->
-
-    <!-- $sql = "SELECT * FROM productos";
-        $resultado = $conexion->query($sql);
-        while ($fila = $resultado->fetch_assoc()) {
-        $idProducto = $fila["idProducto"];
-        $idCesta = $fila["idCesta"];
-
-        }
- -->
-
     <button class="btn btn-danger"> <a id="cerrarSesion" href="cerrar_sesion.php">Cerrar sesión</a></button>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
 
 </html>

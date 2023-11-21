@@ -8,7 +8,20 @@
 </head>
 
 <body>
-    <h1>Cesta de Productos de </h1>
+    
+    <?php
+     
+     session_start();
+     if (!isset($_SESSION[ConstantesSesion::USUARIO])) {
+         header("Location: ");
+     } else {
+         $_SESSION[ConstantesSesion::USUARIO] = "invitado";
+         $usuario = $_SESSION[ConstantesSesion::USUARIO];
+     }?>
+
+
+
+     <h1>Cesta de Productos de </h1>
     <?php
     /* Crea una página donde se muestren los productos que hay en la cesta del usuario que ha iniciado sesión. Se mostrará el nombre del producto, su imagen, precio por unidad y la cantidad que hay en la cesta. */
     $sql = "SELECT nombreProducto, imagen , precio , cantidad FROM  Productos INNER JOIN cestas ON productos.idProducto = cestas.idCesta";
