@@ -1,8 +1,12 @@
 <?php
 
-class producto
+class Producto
 {
-
+    const NOMBRE = "nombreProducto";
+    const PRECIO = "precio";
+    const DESCRIPCION = "descripcion";
+    const CANTIDAD = "cantidad";
+    const IMAGEN = "imagen";
     public int $id;
     public string $nombre;
     public string $precio;

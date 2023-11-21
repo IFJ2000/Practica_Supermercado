@@ -5,41 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <?php require "../util/constantes_sesion.php" ?>
+    <?php require "../util/Conexion_BBDD.php" ?>
+    <?php require "../util/constantes_vista.php" ?>
+    <?php require "../util/controlador_productosCestas.php" ?>
+
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
 <body>
-    
+
     <?php
-     
-     session_start();
-     if (!isset($_SESSION[ConstantesSesion::USUARIO])) {
-         header("Location: ");
-     } else {
-         $_SESSION[ConstantesSesion::USUARIO] = "invitado";
-         $usuario = $_SESSION[ConstantesSesion::USUARIO];
-     }?>
+
+    session_start();
+    if (!isset($_SESSION[ConstantesSesion::USUARIO])) {
+        header("location: ../views/iniciar_sesion_usuario.php");
+    } else {
+    } ?>
 
 
 
-     <h1>Cesta de Productos de </h1>
+    <h1>Cesta de Productos de
+        <?php echo "<h1>" . $_SESSION[ConstantesSesion::USUARIO] . "</h1>" ?>
+    </h1>
+
     <?php
-    /* Crea una página donde se muestren los productos que hay en la cesta del usuario que ha iniciado sesión. Se mostrará el nombre del producto, su imagen, precio por unidad y la cantidad que hay en la cesta. */
-    $sql = "SELECT nombreProducto, imagen , precio , cantidad FROM  Productos INNER JOIN cestas ON productos.idProducto = cestas.idCesta";
-    $resultado = $conexion->query($sql);
-    $productosCesta = [];
-    while ($fila = $resultado->fetch_assoc()) {
+    $usuario =  $_SESSION[ConstantesSesion::USUARIO];
+    $productosCesta = findProductosCestas($conexion, $usuario);
 
-
-        $nombre_Producto = $fila[Constantes_producto::NOMBRE];
-        $imagen = $fila["imagen"];
-        $precioProducto = $fila[Constantes_producto::PRECIO];
-        $cantidad = $fila[Constantes_producto::CANTIDAD];
-        array_push($productosCesta, $nombre_Producto);
-        array_push($productosCesta, $imagen);
-        array_push($productosCesta, $precioProducto);
-        array_push($productosCesta, $cantidad);
-
-    }
     ?>
 
     <table>
@@ -55,31 +51,37 @@
 
         </thead>
         <tbody>
-            <?php foreach ($productosCesta as $lista) ?>
-            <tr>
-                <td>
-                    <?php echo $lista->nombreProducto ?>
-                </td>
+            <?php foreach ($productosCesta as $lista) {
 
-                <td>
-                    <?php echo $lista->imagen ?>
-                </td>
+            ?>
+                <tr>
+                    <td>
+                        <?php echo $lista->nombreProducto ?>
 
-                <td>
-                    <?php echo $lista->precio ?>
-                </td>
+                    </td>
 
-                <td>
-                    <?php echo $lista->cantidad ?>
-                </td>
-            </tr>
+                    <td>
+                        <img src=" <?php echo $lista->imagen; ?>">
+                    </td>
 
+                    <td>
+                        <?php echo $lista->precio ?>
+                    </td>
+
+                    <td>
+                        <?php echo $lista->cantidad ?>
+                    </td>
+                </tr>
+            <?php } ?>
         </tbody>
+
+
 
 
 
 
     </table>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </html>

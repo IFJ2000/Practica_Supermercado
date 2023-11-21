@@ -19,7 +19,7 @@
         $descripcion = $fila["descripcion"];
         $cantidad = $fila["cantidad"];
         $imagen = $fila["imagen"];
-        $nuevo_producto = new producto($id_producto,$nombre, $precio, $descripcion, $cantidad, $imagen);
+        $nuevo_producto = new Producto($id_producto,$nombre, $precio, $descripcion, $cantidad, $imagen);
         array_push($productos, $nuevo_producto);
     }
     ?>
