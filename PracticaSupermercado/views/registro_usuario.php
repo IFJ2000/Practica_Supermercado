@@ -7,8 +7,10 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-    <?php require "../../Funciones/util.php" ?>
-    <?php require "../PracticaSupermercado/Conexion_BBDD.php" ?>
+    <?php require "..//util/util.php" ?>
+    <?php require "../model/Objeto_producto.php" ?>
+    <?php require "../util/constantes_sesion.php" ?>
+    <?php require "../util/Conexion_BBDD.php" ?>
 
 </head>
 
@@ -110,9 +112,6 @@
         $conexion->query($sql);
         echo $sql;
         echo $usuario;
-
-
-       
     } ?>
 
 </body>

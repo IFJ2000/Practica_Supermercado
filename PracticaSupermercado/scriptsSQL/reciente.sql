@@ -57,6 +57,13 @@ SELECT * FROM usuarios;
 SELECT * FROM productosCestas;
 SELECT * FROM cestas;
 
+
+SELECT nombreProducto, imagen , precio , cantidad 
+    FROM  productosCestas 
+    INNER JOIN cestas ON cestas.idCesta = productosCestas.idCesta 
+    INNER JOIN productos ON productos.idProducto = productosCestas.idProducto 
+    WHERE usuario = 'ignacio';
+
 /* ESOT NO TIENE NADA QUE VER ES PARA METER LA IMAGEN
 
 
@@ -88,3 +95,10 @@ SELECT * FROM usuarios;
         Preguntaremos en la pagina de crear usuarios si $_SESSION["rol"] == admin, si lo es dejamos ver la pagina,
         si no, redirigimos a la pagina principal */
     SHOW GRANTS FOR 'root'@'localhost';
+    
+ DELETE FROM usuarios;
+ 
+ /*Para activar o desactivar el borrado seguros*/
+SET SQL_SAFE_UPDATES = 0;
+SET SQL_SAFE_UPDATES = 1;
+

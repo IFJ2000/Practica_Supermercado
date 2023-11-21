@@ -9,11 +9,23 @@
     <?php require "../util/Conexion_BBDD.php" ?>
     <?php require "../util/constantes_vista.php" ?>
     <?php require "../util/controlador_productosCestas.php" ?>
+    <style>
+        img {
+            height: 200px;
 
+        }
 
+        #cerrarSesion {
+            text-decoration: none;
+            color: white;
+        }
 
+        #paginaPrincipal {
+            text-decoration: none;
+            color: white;
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        }
+    </style>
 </head>
 
 <body>
@@ -75,13 +87,12 @@
             <?php } ?>
         </tbody>
 
-
-
-
-
-
     </table>
+    <a id="cerrarSesion" href="cerrar_sesion.php"><button class="btn btn-danger">Cerrar sesión</button></a>
+    <a id="paginaPrincipal" href="Pagina_Principal.php"> <button class="btn btn-info">Volver a la Pagina Principal</button></a>
+
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </html>
